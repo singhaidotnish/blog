@@ -1,7 +1,7 @@
 # Site Settings
 title: "Hello. I'm Nishith Singhai."
 description: "I'm a software developer and designer from Chicago creating useful things for the web."
-url: 'http://singhaidotnish.github.io/blog/' # the base hostname & protocol for your site
+url: 'https://singhaidotnish.github.io/blog/' # the base hostname & protocol for your site
 nav: "true"
 footer_text: '© 2016 Nishith Singhai'
 twitter: 'singhaidotnish'
