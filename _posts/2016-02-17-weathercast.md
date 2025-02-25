@@ -1,13 +1,13 @@
 ---
 layout: inner
 position: left
-title: 'Weathercast'
+title: 'Algo Trading Tool'
 date: 2025-02-20 15:56:00
 categories: development
-tags: OpenCv AI object detection
-featured_image: 'img/posts/02_weathercast-1130x864-2x.png'
-project_link: 'http://github.com/singhaidotnish/muyOpenCv'
+tags: algo trading python
+featured_image: 'img/posts/alogmin.png'
+project_link: 'http://github.com/singhaidotnish/algomin'
 button_icon: 'github'
 button_text: 'Visit Project'
-lead_text: 'learning opencv.'
+lead_text: 'Algo Trading.'
 ---
