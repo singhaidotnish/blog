@@ -4,11 +4,11 @@ description: "I'm a software developer and designer from Mumbai creating useful 
 url: 'https://singhaidotnish.github.io/blog/' # the base hostname & protocol for your site
 nav: "true"
 footer_text: '© 2016 Nishith Singhai'
-twitter: 'singhaidotnish'
+twitter: 'singhainishith'
 github: 'singhaidotnish'
 medium: 'blog.singhaidotnish.com'
 
 # Admin Settings
 admin_name: 'Nishith Singhai'
-admin_email: 'singhaidotnish@gmail.com'
+admin_email: 'singhai.nish@gmail.com'
 google_analytics: "UA-9999999-99" # Update with your own tracking ID
