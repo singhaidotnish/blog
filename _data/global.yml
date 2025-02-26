@@ -4,9 +4,9 @@ description: "I'm a software developer and designer from Mumbai creating useful 
 url: 'https://singhaidotnish.github.io/blog/' # the base hostname & protocol for your site
 nav: "true"
 footer_text: '© 2016 Nishith Singhai'
-twitter: 'singhainishith'
+twitter: ''
 github: 'singhaidotnish'
-medium: 'blog.singhaidotnish.com'
+medium: ''
 
 # Admin Settings
 admin_name: 'Nishith Singhai'
