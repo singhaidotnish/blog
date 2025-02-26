@@ -1,6 +1,6 @@
 # Site Settings
 title: "Hello. I'm Nishith Singhai."
-description: "I'm a software developer and designer from Chicago creating useful things for the web."
+description: "I'm a software developer and designer from Mumbai creating useful things for the world."
 url: 'https://singhaidotnish.github.io/blog/' # the base hostname & protocol for your site
 nav: "true"
 footer_text: '© 2016 Nishith Singhai'
