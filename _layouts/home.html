@@ -18,14 +18,15 @@
 
               {% for post in paginator.posts %}
                 <div class="wow fadeIn">
-                  {% if forloop.index | modulo: 2 == 1 %}
+                  {% assign mod_result = forloop.index0 | modulo: 2 %}
+                  {% if mod_result == 0 %}
                     {% include content-left.html %}
                   {% else %}
                     {% include content-right.html %}
                   {% endif %}
                 </div>
               {% endfor %}
-
+            
               {% include pagination.html %}
 
 
