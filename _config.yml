@@ -9,6 +9,12 @@ data_dir: ./_data
 includes_dir: ./_includes
 # collections: null
 
+collections:
+  pages:
+    output: true
+    permalink: /blog/:name/
+
+
 # Handling Reading
 safe:         false
 include:      [".htaccess", "_pages"]
