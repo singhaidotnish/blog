@@ -1,0 +1,86 @@
+name: Jekyll Build
+
+on:
+  push:
+    branches:
+      - main  # Trigger on changes to main
+  pull_request:
+
+env:
+  PAGES_REPO_NWO: singhaidotnish/blog
+  JEKYLL_GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}  # Use GH_PAT for authentication
+
+      - name: Set Up Git Remote  # ✅ Check if remote exists, then update or add
+        run: |
+          git remote remove origin || true  # Remove origin if it exists (ignores errors)
+          git remote add origin https://github.com/singhaidotnish/blog.git
+          git fetch origin
+          
+
+      - name: Setup Ruby & Install Jekyll
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0
+
+      - name: Install Jekyll
+        run: gem install jekyll
+
+      - name: Install Jekyll Dependencies
+        run: |
+          bundle install --jobs 4 --retry 3
+
+      - name: Clean & Build Jekyll
+        run: |
+          rm -rf _site .jekyll-cache
+          JEKYLL_ENV=production bundle exec jekyll build --trace
+
+      - name: Verify _site directory after build
+        run: ls -la _site
+
+      - name: Upload built Jekyll site
+        uses: actions/upload-artifact@v4
+        with:
+          name: jekyll-site
+          path: _site
+          retention-days: 30  # Keep the artifact for 5 days
+
+  deploy:
+    needs: build  # Ensures build runs before deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Ensures full history
+
+      - name: Download built Jekyll site
+        uses: actions/download-artifact@v4
+        with:
+          name: jekyll-site
+          path: _site
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy to gh-pages
+        run: |
+          git clone --branch gh-pages --single-branch "https://${{ secrets.GH_PAT }}@github.com/singhaidotnish/blog.git" gh-pages
+          rm -rf gh-pages/*
+          cp -r _site/* gh-pages/
+          cd gh-pages
+          git add .
+          git commit -m "Deploy Jekyll site" || echo "No changes to commit"
+          git push "https://${{ secrets.GH_PAT }}@github.com/singhaidotnish/blog.git" gh-pages
