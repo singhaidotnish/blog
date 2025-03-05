@@ -1,16 +1,14 @@
 ---
 layout: inner
 title: About
-permalink: /about/
+permalink: /blog/about/
 ---
 
 ## Hello World!
 --
 
-Aenean praesentium dolore aenean qui nesciunt dictumst molestiae, odit irure. Nesciunt fusce, atque pharetra odio quis quaerat accusantium? Integer aspernatur eligendi facilisis, do sodales. Consequat.
+Hey there! I’m {{ site.name }}, a creative and energetic individual with a passion for animals, adventure, and hands-on crafting. Living with ADHD has shaped the way I approach life—always curious, always exploring, and never afraid to try something new.
 
-Arcu porro faucibus ante! Unde litora voluptate veniam fugit alias. Sociosqu! Augue, cupidatat excepturi laoreet magnis veniam repudiandae impedit venenatis alias iure ad ab! Enim.
+I’ve had the thrill of riding cross-country, embracing the excitement of the open trail, and I love working with my hands, crafting unique objects from PVC as a fun side hobby. Whether I’m out in nature or working on my next creative project, I find joy in pushing limits and bringing ideas to life.
 
-Nibh quia necessitatibus omnis! Nemo nascetur penatibus iste morbi. Nisi, consequat! Rutrum. Quasi elementum, dignissim cillum, cubilia sapien vitae officia porta hendrerit. Mi aut recusandae.
-
-Voluptatem sint. Sapiente porttitor vivamus sequi occaecat litora? Conubia molestias nostrud dicta quisque penatibus minim imperdiet? Aspernatur nostra doloribus nibh curae ac? Nobis quas? Sollicitudin.
+Let’s connect—whether it’s about creativity, animals, or just sharing a love for new experiences!
