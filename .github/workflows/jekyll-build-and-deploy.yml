@@ -23,16 +23,22 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          repository: singhaidotnish/blog
           token: ${{ secrets.GH_PAT }}  # This is required for authentication
+
+#      - name: Set GH_PAT in Environment
+#        run: echo "GH_PAT=${{ secrets.GH_PAT }}" >> $GITHUB_ENV
 
       - name: Set Environment Variables
         run: echo "PAGES_REPO_NWO=singhaidotnish/blog" >> $GITHUB_ENV
 
       - name: Debug Secrets
-        run: echo "GH_PAT is set"
-        env:
-          GH_PAT: ${{ secrets.GH_PAT }}  # Check if the secret is accessible
+        run: |
+          if [ -z "${{ secrets.GH_PAT }}" ]; then
+            echo "❌ GH_PAT is NOT set in GitHub Secrets!"
+            exit 1
+          else
+            echo "✅ GH_PAT is set correctly."
+          fi
 
       - name: Set Up Git Remote  # ✅ Check if remote exists, then update or add
         run: |
