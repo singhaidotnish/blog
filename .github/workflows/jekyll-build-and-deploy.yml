@@ -90,51 +90,106 @@ jobs:
 #
 #
 
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout Repository
+#        uses: actions/checkout@v3
+#
+#      - name: Set Up Ruby
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: '3.1'  # Ensure compatibility with your Jekyll version
+#          bundler-cache: true   # Cache gems to speed up installation
+#
+#      - name: Clean Old Files & Cache
+#        run: |
+#          echo "🔥 Cleaning up old files..."
+#          rm -rf _site .jekyll-cache vendor Gemfile.lock
+#          bundle clean --force || echo "No previous bundle to clean"
+#
+#      - name: Install Dependencies
+#        run: |
+#          echo "🔥 Installing Bundler..."
+#          gem install bundler --no-document
+#          export PATH="$HOME/.gem/ruby/3.1.0/bin:$PATH"
+#          echo "PATH=$PATH" >> $GITHUB_ENV
+#
+#          echo "🔥 Installing Dependencies..."
+#          bundle install --jobs 4 --retry 3
+#
+#      - name: Verify Installed Gems
+#        run: |
+#          echo "🔥 Listing installed gems..."
+#          gem list
+#
+#      - name: Build Jekyll Site
+#        run: |
+#          echo "🔥 Running Jekyll Build..."
+#          JEKYLL_ENV=production bundle exec jekyll build --trace
+#          echo "✅ Jekyll Build Completed"
+#
+#      - name: Verify _site Directory
+#        run: |
+#          echo "🔥 Checking _site directory..."
+#          ls -la
+#          ls -la _site || echo "🚨 _site NOT FOUND"
+#
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set GH_PAT in Environment
+        run: echo "GH_PAT=${{ secrets.GH_PAT }}" >> $GITHUB_ENV
+
+      - name: Debug Environment Variables (After Setting GH_PAT)
+        run: env | grep GH_
+
+      - name: Set Other Environment Variables
+        run: echo "PAGES_REPO_NWO=singhaidotnish/blog" >> $GITHUB_ENV
+
       - name: Checkout Repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_PAT }}  # This is required for authentication
 
       - name: Set Up Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'  # Ensure compatibility with your Jekyll version
-          bundler-cache: true   # Cache gems to speed up installation
+          bundler-cache: true
 
-      - name: Clean Old Files & Cache
+      - name: Clean Old Files
         run: |
-          echo "🔥 Cleaning up old files..."
           rm -rf _site .jekyll-cache vendor Gemfile.lock
-          bundle clean --force || echo "No previous bundle to clean"
 
       - name: Install Dependencies
         run: |
-          echo "🔥 Installing Bundler..."
           gem install bundler --no-document
           export PATH="$HOME/.gem/ruby/3.1.0/bin:$PATH"
           echo "PATH=$PATH" >> $GITHUB_ENV
-          
-          echo "🔥 Installing Dependencies..."
           bundle install --jobs 4 --retry 3
-
-      - name: Verify Installed Gems
-        run: |
-          echo "🔥 Listing installed gems..."
-          gem list
 
       - name: Build Jekyll Site
         run: |
-          echo "🔥 Running Jekyll Build..."
           JEKYLL_ENV=production bundle exec jekyll build --trace
-          echo "✅ Jekyll Build Completed"
 
       - name: Verify _site Directory
         run: |
-          echo "🔥 Checking _site directory..."
-          ls -la
-          ls -la _site || echo "🚨 _site NOT FOUND"
+          if [ ! -d "_site" ]; then
+            echo "🚨 _site directory is MISSING!"
+            exit 1
+          fi
+          ls -la _site
+
+      - name: Upload Built Jekyll Site
+        uses: actions/upload-artifact@v4
+        with:
+          name: jekyll-site
+          path: _site
+          retention-days: 30  # Keep for 7 days
+
 
   deploy:
     needs: build
