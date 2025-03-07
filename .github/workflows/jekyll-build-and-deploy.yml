@@ -50,6 +50,11 @@ jobs:
           ruby-version: '3.1'  # Change to match your Jekyll version
           bundler-cache: true   # Automatically installs Bundler & caches gems
 
+      - name: Clean Up Before Build  # 🔥 Add this step
+        run: |
+          rm -rf _site .jekyll-cache vendor
+          bundle clean --force
+          
       - name: Install Dependencies
         run: |
           gem install bundler --no-document
@@ -97,33 +102,6 @@ jobs:
 
       - name: Set Other Environment Variables
         run: echo "PAGES_REPO_NWO=singhaidotnish/blog" >> $GITHUB_ENV
-
-#      - name: Checkout Repository
-#        uses: actions/checkout@v3
-#        with:
-#          fetch-depth: 0  # Ensures full history
-#          repository: singhaidotnish/blog
-#          token: ${{ secrets.GH_PAT }}  # Use a PAT if needed
-
-#      - name: Setup Ruby
-#        uses: ruby/setup-ruby@v1
-#        with:
-#          ruby-version: '3.1'  # Ensure this matches your `build` job
-#          bundler-cache: true   # Enables Bundler caching
-
-#      - name: Install Bundler
-#        run: |
-#          gem install bundler --no-document
-#          export PATH="$HOME/.gem/ruby/3.1.0/bin:$PATH"
-#          echo "PATH=$PATH" >> $GITHUB_ENV
-
-#      - name: Debug Bundler in Deploy
-#        run: |
-#          which bundle || echo "❌ Bundler NOT found"
-#          echo "✅ PATH: $PATH"
-
-#      - name: Install Dependencies
-#        run: bundle install --jobs 4 --retry 3
 
       - name: Download built Jekyll site
         uses: actions/download-artifact@v4
