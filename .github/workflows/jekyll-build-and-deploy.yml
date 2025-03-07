@@ -76,6 +76,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install Jekyll Dependencies
+        run: |
+          bundle install
+
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
