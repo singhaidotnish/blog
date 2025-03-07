@@ -6,6 +6,7 @@ plugins_dir: ./_plugins
 layouts_dir: ./_layouts
 data_dir: ./_data
 includes_dir: ./_includes
+destination: ./_site
 
 collections:
   pages:
