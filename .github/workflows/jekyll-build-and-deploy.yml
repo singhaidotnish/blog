@@ -50,9 +50,19 @@ jobs:
           ruby-version: '3.1'  # Change to match your Jekyll version
           bundler-cache: true   # Automatically installs Bundler & caches gems
 
+      - name: Debug Ruby and Bundler
+        run: |
+          ruby -v
+          gem -v
+          which ruby
+          which gem
+          which bundle
+
       - name: Install Dependencies
         run: |
-          gem install bundler  # Ensures Bundler is available
+          gem install bundler --no-document
+          export PATH="$HOME/.gem/ruby/3.1.0/bin:$PATH"
+          echo "PATH=$PATH" >> $GITHUB_ENV
           bundle install --jobs 4 --retry 3
 
       - name: Install Jekyll
