@@ -10,7 +10,7 @@ includes_dir: ./_includes
 collections:
   pages:
     output: true
-    permalink: /blog/:title/
+    permalink: /:name/
 
 # Handling Reading
 safe:         false
