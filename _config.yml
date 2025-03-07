@@ -11,8 +11,9 @@ destination: ./_site
 collections:
   pages:
     output: true
-    permalink: /:name/
+    permalink: /:path/
 
+    
 # Handling Reading
 safe:         false
 include:      [".htaccess"]
