@@ -87,6 +87,9 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Verify _site directory after build
+        run: ls -la _site
+
       - name: Set GH_PAT in Environment
         run: echo "GH_PAT=${{ secrets.GH_PAT }}" >> $GITHUB_ENV
 

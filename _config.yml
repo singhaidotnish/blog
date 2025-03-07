@@ -10,7 +10,7 @@ includes_dir: ./_includes
 collections:
   pages:
     output: true
-    permalink: /blog/:name/
+    permalink: /blog/:title/
 
 # Handling Reading
 safe:         false
@@ -37,7 +37,7 @@ plugins:
 
 # Serving
 url: "https://singhaidotnish.github.io"
-baseurl: "/blog"  # Correct if your repo is "blog"
+#baseurl: "/blog"  # Correct if your repo is "blog"
 
 # Output
 permalink: pretty
