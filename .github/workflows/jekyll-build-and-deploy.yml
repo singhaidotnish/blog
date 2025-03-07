@@ -89,9 +89,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Verify _site directory after build
-        run: ls -la _site
-
       - name: Set GH_PAT in Environment
         run: echo "GH_PAT=${{ secrets.GH_PAT }}" >> $GITHUB_ENV
 
@@ -101,38 +98,41 @@ jobs:
       - name: Set Other Environment Variables
         run: echo "PAGES_REPO_NWO=singhaidotnish/blog" >> $GITHUB_ENV
 
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Ensures full history
-          repository: singhaidotnish/blog
-          token: ${{ secrets.GH_PAT }}  # Use a PAT if needed
+#      - name: Checkout Repository
+#        uses: actions/checkout@v3
+#        with:
+#          fetch-depth: 0  # Ensures full history
+#          repository: singhaidotnish/blog
+#          token: ${{ secrets.GH_PAT }}  # Use a PAT if needed
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.1'  # Ensure this matches your `build` job
-          bundler-cache: true   # Enables Bundler caching
+#      - name: Setup Ruby
+#        uses: ruby/setup-ruby@v1
+#        with:
+#          ruby-version: '3.1'  # Ensure this matches your `build` job
+#          bundler-cache: true   # Enables Bundler caching
 
-      - name: Install Bundler
-        run: |
-          gem install bundler --no-document
-          export PATH="$HOME/.gem/ruby/3.1.0/bin:$PATH"
-          echo "PATH=$PATH" >> $GITHUB_ENV
+#      - name: Install Bundler
+#        run: |
+#          gem install bundler --no-document
+#          export PATH="$HOME/.gem/ruby/3.1.0/bin:$PATH"
+#          echo "PATH=$PATH" >> $GITHUB_ENV
 
-      - name: Debug Bundler in Deploy
-        run: |
-          which bundle || echo "❌ Bundler NOT found"
-          echo "✅ PATH: $PATH"
+#      - name: Debug Bundler in Deploy
+#        run: |
+#          which bundle || echo "❌ Bundler NOT found"
+#          echo "✅ PATH: $PATH"
 
-      - name: Install Dependencies
-        run: bundle install --jobs 4 --retry 3
+#      - name: Install Dependencies
+#        run: bundle install --jobs 4 --retry 3
 
       - name: Download built Jekyll site
         uses: actions/download-artifact@v4
         with:
           name: jekyll-site
           path: _site
+
+      - name: Verify _site directory after build
+        run: ls -la _site
 
       - name: Setup Git
         run: |
