@@ -26,6 +26,11 @@ jobs:
           repository: singhaidotnish/blog
           token: ${{ secrets.GH_PAT }}  # Use GH_PAT for authentication
 
+      - name: Debug Secrets
+        run: echo "GH_PAT is set"
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+
       - name: Set Up Git Remote  # ✅ Check if remote exists, then update or add
         run: |
           git remote remove origin || true  # Remove origin if it exists (ignores errors)
