@@ -18,6 +18,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
+          repository: singhaidotnish/blog
           token: ${{ secrets.GH_PAT }}  # Use GH_PAT for authentication
 
       - name: Set Up Git Remote  # ✅ Check if remote exists, then update or add
