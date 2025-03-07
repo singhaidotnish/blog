@@ -32,7 +32,7 @@ jobs:
       - name: Set Up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.1'  # Ensure compatibility with your Jekyll version
+          ruby-version: '3.0'  # Ensure compatibility with your Jekyll version
           bundler-cache: true
 
       - name: Clean Old Files
@@ -42,7 +42,7 @@ jobs:
       - name: Install Dependencies
         run: |
           gem install bundler --no-document
-          export PATH="$HOME/.gem/ruby/3.1.0/bin:$PATH"
+          export PATH="$HOME/.gem/ruby/3.1.6/bin:$PATH"
           echo "PATH=$PATH" >> $GITHUB_ENV
           bundle install --jobs 4 --retry 3
 
