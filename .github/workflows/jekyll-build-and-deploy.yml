@@ -10,11 +10,16 @@ env:
   PAGES_REPO_NWO: singhaidotnish/blog
   JEKYLL_GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
+
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Debug Environment Variables
+        run: env | grep GH_
+
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
