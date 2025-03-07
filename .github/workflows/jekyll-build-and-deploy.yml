@@ -17,19 +17,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Debug Environment Variables
+      - name: Set GH_PAT in Environment
+        run: echo "GH_PAT=${{ secrets.GH_PAT }}" >> $GITHUB_ENV
+
+      - name: Debug Environment Variables (After Setting GH_PAT)
         run: env | grep GH_
+
+      - name: Set Other Environment Variables
+        run: echo "PAGES_REPO_NWO=singhaidotnish/blog" >> $GITHUB_ENV
 
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GH_PAT }}  # This is required for authentication
-
-#      - name: Set GH_PAT in Environment
-#        run: echo "GH_PAT=${{ secrets.GH_PAT }}" >> $GITHUB_ENV
-
-      - name: Set Environment Variables
-        run: echo "PAGES_REPO_NWO=singhaidotnish/blog" >> $GITHUB_ENV
 
       - name: Debug Secrets
         run: |
