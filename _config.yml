@@ -13,7 +13,7 @@ collections:
     output: true
     permalink: /:path/
 
-    
+
 # Handling Reading
 safe:         false
 include:      [".htaccess"]
@@ -39,7 +39,7 @@ plugins:
 
 # Serving
 url: "https://singhaidotnish.github.io"
-#baseurl: "/blog"  # Correct if your repo is "blog"
+baseurl: "/blog"  # Correct if your repo is "blog"
 
 # Output
 permalink: pretty
