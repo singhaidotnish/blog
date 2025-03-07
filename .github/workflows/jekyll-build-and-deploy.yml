@@ -44,20 +44,19 @@ jobs:
           git remote add origin https://github.com/singhaidotnish/blog.git
           git fetch origin
 
-      - name: Setup Ruby & Install Jekyll
+      - name: Set Up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0
+          ruby-version: '3.1'  # Change to match your Jekyll version
+          bundler-cache: true   # Automatically installs Bundler & caches gems
 
-      - name: Install Bundler
-        run: gem install bundler
+      - name: Install Dependencies
+        run: |
+          gem install bundler  # Ensures Bundler is available
+          bundle install --jobs 4 --retry 3
 
       - name: Install Jekyll
         run: gem install jekyll
-
-      - name: Install Jekyll Dependencies
-        run: |
-          bundle install --jobs 4 --retry 3
 
       - name: Clean & Build Jekyll
         run: |
