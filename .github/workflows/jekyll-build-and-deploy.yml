@@ -10,8 +10,6 @@ env:
   PAGES_REPO_NWO: singhaidotnish/blog
   JEKYLL_GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 
-
-
 jobs:
   build:
     runs-on: ubuntu-latest
