@@ -23,6 +23,9 @@ markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 # Plugins
 plugins:
   - jekyll-paginate
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 # Serving
 url: "https://singhaidotnish.github.io"
